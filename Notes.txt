@@ -1,0 +1,22 @@
+1. To create a project use:  
+scrapy startproject <name>
+
+2. Activate virtual environemnt
+pip install virtualenv
+python3 -m venv venv
+source venv/bin/activate
+
+3. Install scrapy
+
+4. Create a spider
+Command: navigate to spiders folder 
+scrapy genspider <name> <url>
+
+5. Command
+Change in setting.cfg shell = ipython
+pip install ipython
+scrapy shell
+
+6. Example :
+In [9]: book.css('h3 a::text').get()
+Out[9]: 'A Light in the ...'
