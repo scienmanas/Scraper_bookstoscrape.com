@@ -20,3 +20,6 @@ scrapy shell
 6. Example :
 In [9]: book.css('h3 a::text').get()
 Out[9]: 'A Light in the ...'
+
+7. What does the Yield Keyword do?
+Ans: Yield keyword is used to create a generator function. A type of function that is memory efficient and can be used like an iterator object.
