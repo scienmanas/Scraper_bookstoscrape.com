@@ -7,4 +7,10 @@ class BookspiderSpider(scrapy.Spider):
     start_urls = ["https://books.toscrape.com"]
 
     def parse(self, response):
-        pass
+        books = response.css('article.product')
+
+        for book in books :
+            yield{
+                'name' : book.css('h3 a::text').get(),
+                
+            }

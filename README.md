@@ -1,2 +1,5 @@
 # Scrapy-practice-codes
-This repositoory contains codes which I wrote during learning Scrapy
+This repository contains codes which I wrote during learning Scrapy
+
+## Scrapped Wesbite 
+Wesbite: [Books to Scrape](https://books.toscrape.com/)
