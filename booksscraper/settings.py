@@ -12,6 +12,9 @@ BOT_NAME = "booksscraper"
 SPIDER_MODULES = ["booksscraper.spiders"]
 NEWSPIDER_MODULE = "booksscraper.spiders"
 
+# FEEDS = {
+#     'booksdata_cleaned.json' : {'format': 'json'}
+# }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "booksscraper (+http://www.yourdomain.com)"
