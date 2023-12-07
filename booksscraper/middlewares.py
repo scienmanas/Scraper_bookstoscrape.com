@@ -3,6 +3,9 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from urllib.parse import urlencode
+import requests
+import random
 from scrapy import signals
 
 # useful for handling different item types with a single interface
@@ -101,3 +104,37 @@ class BooksscraperDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
+
+
+class ScrapeOpsFakeUserAgentMiddleware:
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler.settings)
+
+    def __init__(self, settings) -> None:
+        self.scrapeops_api_key = settings.get('SCRAPEOPS_API_KEY')
+        self.scrapeops_endpoint = settings.get(
+            'SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT', 'http://headers.scrapeops.io/v1/user-agents?')
+        self.scrapeops_fake_user_agents_active = settings.get(
+            'SCRAPEOPS_FAKE_USER_AGENT_ENABLED', False)
+        self.scrapeops_num_results = settings.get('SCRAPEOPS_NUM_RESULTS')
+        self.header_list = []
+        self._get_user_agents_list()
+        self._scrapeops_fake_user_agents_enabled()
+
+    def _get_user_agents_list(self):
+        payload = {
+            'api_key' : self.scrapeops_api_key ,
+            'num_results' : self.scrapeops_num_results
+        }
+        
+        response = requests.get(self.scrapeops_endpoint, params=urlencode(payload))
+        if response.status_code == 200:
+            json_response = response.json()
+            self.user_agents_list = json_response.get('results', [])
+        else :
+            response = requests.get(self.scrapeops_endpoint, params=payload)
+
+    def _scrapeops_fake_user_agents_enabled(self):
+        pass

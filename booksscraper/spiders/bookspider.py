@@ -1,4 +1,5 @@
 import scrapy
+import random
 from booksscraper.items import BookItem
 
 class BookspiderSpider(scrapy.Spider):
@@ -12,6 +13,18 @@ class BookspiderSpider(scrapy.Spider):
             'booksdata_clean_customsetting.json' : {'format': 'json' , 'overwrite': True},
         },
     }
+    
+    def __init__(self) :
+        # self.user_agent_list = {
+        #     'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0',
+        #     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+        #     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+        #     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+        #     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+        #     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
+        #     'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
+        # }
+        pass
 
     def parse(self, response):
         books = response.css('article.product_pod')
@@ -34,6 +47,7 @@ class BookspiderSpider(scrapy.Spider):
                 next_page_url = "https://books.toscrape.com/" + next_page
             else :
                 next_page_url = "https://books.toscrape.com/catalogue/" + next_page
+            # yield response.follow(next_page_url, callback= self.parse, headers={"User-Agent": random.choice(self.user_agent_list)})
             yield response.follow(next_page_url, callback= self.parse)
 
     def parse_book_page(self, response) :

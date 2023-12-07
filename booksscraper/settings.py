@@ -16,6 +16,12 @@ NEWSPIDER_MODULE = "booksscraper.spiders"
 #     'booksdata_cleaned.json' : {'format': 'json'}
 # }
 
+SCRAPEOPS_API_KEY = '4d2a500f-c3ae-45ed-9dd8-44597ffff61a'
+SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
+SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
+SCRAPEOPS_NUM_RESULTS = 50
+# USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "booksscraper (+http://www.yourdomain.com)"
 
@@ -67,7 +73,7 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "booksscraper.pipelines.BooksscraperPipeline": 300,
-   "booksscraper.pipelines.SaveToMySQLPipeline" : 400,
+   # "booksscraper.pipelines.SaveToMySQLPipeline" : 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
