@@ -39,28 +39,30 @@ class BookspiderSpider(scrapy.Spider):
         #     'url' : response.url,
         #     'title' : response.css('.product_main h1::text').get(),
         #     'product_type' : table_rows[1].css('td ::text').get(),
+        #     'upc' : table_rows[0].css('td ::text').get(),
         #     'price_excl_tax' : table_rows[2].css('td ::text').get(),
         #     'price_incl_tax' : table_rows[3].css('td ::text').get(),
         #     'tax' : table_rows[4].css('td ::text').get(),
-        #     'availability' : response.css('p.availability i ::text').get(),
+        #     'availability' : response.css('p.availability').xpath('string()').get().strip(),
         #     'num_reviews' : table_rows[6].css('td ::text').get(),
-        #     'stars' : response.css('p.star-rating').attrib['class'][1],
+        #     'stars' : response.css('p.star-rating').attrib['class'].split(' ')[1],
         #     'category' : response.xpath("/html/body/div/div/ul/li[3]/a/text()").get(),
         #     'description' : response.xpath("/html/body/div/div/div[2]/div[2]/article/p/text()").get(),
         #     'price' : response.css('p.price_color ::text').get(),
         # }
 
-        book_item['url'] : response.url
-        book_item['title'] : response.css('.product_main h1::text').get()
-        book_item['product_type'] : table_rows[1].css('td ::text').get()
-        book_item['price_excl_tax'] : table_rows[2].css('td ::text').get()
-        book_item['price_incl_tax'] : table_rows[3].css('td ::text').get()
-        book_item['tax'] : table_rows[4].css('td ::text').get()
-        book_item['availability'] : response.css('p.availability i ::text').get()
-        book_item['num_reviews'] : table_rows[6].css('td ::text').get()
-        book_item['stars'] : response.css('p.star-rating').attrib['class'][1]
-        book_item['category'] : response.xpath("/html/body/div/div/ul/li[3]/a/text()").get()
-        book_item['description'] : response.xpath("/html/body/div/div/div[2]/div[2]/article/p/text()").get()
-        book_item['price'] : response.css('p.price_color ::text').get()
+        book_item['url'] = response.url
+        book_item['title'] = response.css('.product_main h1::text').get()
+        book_item['upc'] = table_rows[0].css('td ::text').get()
+        book_item['product_type'] = table_rows[1].css('td ::text').get()
+        book_item['price_excl_tax'] = table_rows[2].css('td ::text').get()
+        book_item['price_incl_tax'] = table_rows[3].css('td ::text').get()
+        book_item['tax'] = table_rows[4].css('td ::text').get()
+        book_item['availability'] = table_rows[5].css("td ::text").get()
+        book_item['num_reviews'] = table_rows[6].css('td ::text').get()
+        book_item['stars'] = response.css('p.star-rating').attrib['class'].split(' ')[1]
+        book_item['category'] = response.xpath("/html/body/div/div/ul/li[3]/a/text()").get()
+        book_item['description'] = response.xpath("/html/body/div/div/div[2]/div[2]/article/p/text()").get()
+        book_item['price'] = response.css('p.price_color ::text').get()
 
-        yield BookItem
+        yield book_item
