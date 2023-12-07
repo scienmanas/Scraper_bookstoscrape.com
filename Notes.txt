@@ -36,3 +36,10 @@ csv: scrapy crawl bookspider -O bookdata.csv
 json: scrapy crawl bookspider -O bookdata.json
 
 11. Pipelines are used to clean the data
+
+12. sudo mysql -u root
+
+13. Most life saving article :
+https://computingforgeeks.com/how-to-install-mariadb-on-kali-linux/
+
+14. sudo mysql -u root -p
