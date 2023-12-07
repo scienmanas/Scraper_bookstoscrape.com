@@ -30,3 +30,7 @@ response.xpath("//ul[@class='breadcrumb']/li[@class='active']/preceding-sibling:
 response.xpath("//div[@id='product_description']/following-sibling::p/text()").get()
 
 9. response.css('p.star-rating').attrib['class']
+
+10. Save :
+csv: scrapy crawl bookspider -O bookdata.csv
+json: scrapy crawl bookspider -O bookdata.json
