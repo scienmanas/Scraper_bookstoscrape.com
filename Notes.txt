@@ -40,6 +40,7 @@ json: scrapy crawl bookspider -O bookdata.json
 12. sudo mysql -u root
 
 13. Most life saving article :
+create database books;
 https://computingforgeeks.com/how-to-install-mariadb-on-kali-linux/
 
 14. sudo mysql -u root -p
