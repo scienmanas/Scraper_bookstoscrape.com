@@ -115,7 +115,7 @@ class ScrapeOpsFakeUserAgentMiddleware:
     def __init__(self, settings) -> None:
         self.scrapeops_api_key = settings.get('SCRAPEOPS_API_KEY')
         self.scrapeops_endpoint = settings.get(
-            'SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT', 'http://headers.scrapeops.io/v1/user-agents?')
+            'SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT', 'https://headers.scrapeops.io/v1/user-agents')
         self.scrapeops_fake_user_agents_active = settings.get(
             'SCRAPEOPS_FAKE_USER_AGENT_ENABLED', False)
         self.scrapeops_num_results = settings.get('SCRAPEOPS_NUM_RESULTS')
@@ -128,13 +128,28 @@ class ScrapeOpsFakeUserAgentMiddleware:
             'api_key' : self.scrapeops_api_key ,
             'num_results' : self.scrapeops_num_results
         }
-        
-        response = requests.get(self.scrapeops_endpoint, params=urlencode(payload))
+        response = requests.get(self.scrapeops_endpoint, params=payload)
         if response.status_code == 200:
             json_response = response.json()
-            self.user_agents_list = json_response.get('results', [])
+            self.user_agents_list = json_response.get('result', [])
         else :
+            print("*********************Fucked *****************")
             response = requests.get(self.scrapeops_endpoint, params=payload)
 
+    def _get_random_user_agent(self) :
+        random_index = random.randint(0, len(self.user_agents_list) - 1)
+        return self.user_agents_list[random_index]
+
     def _scrapeops_fake_user_agents_enabled(self):
-        pass
+        if self.scrapeops_api_key is None or self.scrapeops_api_key == '' :
+            self.scrapeops_fake_user_agents_active = False
+        else :
+            self.scrapeops_fake_user_agents_active = True
+    
+    def process_request(self, request, spider) :
+        random_user_agent = self._get_random_user_agent()
+        request.headers['User-Agent'] = random_user_agent
+        
+        print("******************New User-Agent*********************")
+        print(random_user_agent)
+        print("**********************OK*****************************")
