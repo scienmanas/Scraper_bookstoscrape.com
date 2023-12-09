@@ -36,3 +36,8 @@ shub crawl books
 The purpose of this repository is to learn Scrapy and to help others who are learning Scrapy.
 
 The webiste scraped is open to scrapping to individuals to learn and test we scrapping
+
+## Technologies Used
+
+1. The Project uses ScrapeOps APIs for proxies, handling headers and user agents .
+2. The Website can be accessed by the link : https://scrapeops.io/
