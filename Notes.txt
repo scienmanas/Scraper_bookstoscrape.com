@@ -66,3 +66,9 @@ ROTATING_PROXY_LIST = [
 pip install scrapy-rotating-proxies
 
 19.  pip install scrapeops-scrapy-proxy-sdk
+
+20. For Deploying
+
+a. scrapyd and scrapyd client, and web
+
+b. scrapeops 
