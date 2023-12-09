@@ -52,4 +52,17 @@ https://scrapeops.io/
 
 17. Middle Attach in download middlewares for rotating headers while scrapping
 
-18. 
+18. For installing rotating proxy module (Helpful for scrapy 
+in setting 
+
+Also refer docs for complete setup of it in the middlewares
+
+ROTATING_PROXY_LIST = [
+   'proxy1.com:8000',
+   'proxy2.com:8031',
+   'proxy3.com:8032',
+]
+) :
+pip install scrapy-rotating-proxies
+
+19.  

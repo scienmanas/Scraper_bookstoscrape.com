@@ -207,6 +207,6 @@ class ScrapeOpsFakeBrowserHeaderMiddleware:
         request.headers['user-agent'] = random_browser_header['user-agent']
         request.headers['upgrade-insecure-requests'] = random_browser_header['upgrade-insecure-requests']
 
-        print("******************New User-Agent*********************")
+        print("******************New Header*********************")
         print(random_browser_header)
         print("**********************OK*****************************")
