@@ -10,7 +10,7 @@ Wesbite: [Books to Scrape](https://books.toscrape.com/)
 
 1. Clone the repository
 ```
-git clone 
+git clone https://github.com/scienmanas/Scraper_bookstoscrape.com.git
 ```
 2. Install the requirements
 ```
