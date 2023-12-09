@@ -25,13 +25,21 @@ SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = 'https://headers.scrapeops.io/v1/browse
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
 SCRAPEOPS_NUM_RESULTS_HEADER = 5
 
-ROTATED_PROXY_ENABLED = True
+# ROTATED_PROXY_ENABLED = True
 
-ROTATING_PROXY_LIST = [
-   '50.116.8.96:17477',
-   '186.235.187.14:4153',
-   '104.17.239.10:80',
-]
+# ROTATING_PROXY_LIST = [
+#    '50.116.8.96:17477',
+#    '186.235.187.14:4153',
+#    '104.17.239.10:80',
+# ]
+
+PROXY_PORT = '7000'
+
+# SCRAPEOPS_PROXY_ENABLED = True
+
+# SCRAPEOPS_PROXY_SETTINGS = {
+#     'country' : 'us'
+# }
 
 # ROTATING_PROXY_LIST_PATH = '/my/path/proxies.txt'
 
@@ -77,14 +85,15 @@ ROBOTSTXT_OBEY = False
 DOWNLOADER_MIDDLEWARES = {
    # 'booksscraper.middlewares.BooksscraperDownloaderMiddleware': 543,
    # 'booksscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware': 400,
-      'booksscraper.middlewares.ScrapeOpsFakeBrowserHeaderMiddleware': 300 ,
+   # 'booksscraper.middlewares.ScrapeOpsFakeBrowserHeaderMiddleware': 300 ,
+   # 'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 300,
    
 }
 
-DOWNLOADER_MIDDLEWARES.update({
-    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
-    'scrapy_rotated_proxy.downloadmiddlewares.proxy.RotatedProxyMiddleware': 750,
-})
+# DOWNLOADER_MIDDLEWARES.update({
+#     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
+#     'scrapy_rotated_proxy.downloadmiddlewares.proxy.RotatedProxyMiddleware': 750,
+# })
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

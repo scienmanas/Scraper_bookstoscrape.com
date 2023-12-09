@@ -1,11 +1,25 @@
+from typing import Iterable
 import scrapy
 import random
+
+from scrapy.http import Request
 from booksscraper.items import BookItem
+from urllib.parse import urlencode
+
+
+# def get_proxy_url(url) :
+#     payload = {
+#         'api_key' : API_KEY,
+#         'url' : url,
+#         'residential' : 'true'
+#     }
+#     proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
+#     return proxy_url
 
 class BookspiderSpider(scrapy.Spider):
     name = "bookspider"
-    allowed_domains = ["books.toscrape.com"]
-    start_urls = ["https://books.toscrape.com"]
+    allowed_domains = ["books.toscrape.com", 'proxy.scrapeops.io']
+    start_urls = ["https://books.toscrape.com/"]
 
     # Overwite setting in setting file
     custom_settings = {
@@ -13,6 +27,9 @@ class BookspiderSpider(scrapy.Spider):
             'booksdata_clean_customsetting.json' : {'format': 'json' , 'overwrite': True},
         },
     }
+
+    def start_requests(self) :
+        yield scrapy.Request(url=self.start_urls[0], callback=self.parse)
     
     def __init__(self) :
         # self.user_agent_list = {
@@ -37,7 +54,9 @@ class BookspiderSpider(scrapy.Spider):
                 book_url = "https://books.toscrape.com/" + relative_url_book
             else :
                 book_url = "https://books.toscrape.com/catalogue/" + relative_url_book
-            yield response.follow(book_url, callback=self.parse_book_page)
+            # yield response.follow(book_url, callback=self.parse_book_page)
+            yield scrapy.Request(url=book_url, callback=self.parse_book_page)
+
     
         # To move to next page
         next_page = response.css('li.next a::attr(href)').get()
@@ -48,7 +67,8 @@ class BookspiderSpider(scrapy.Spider):
             else :
                 next_page_url = "https://books.toscrape.com/catalogue/" + next_page
             # yield response.follow(next_page_url, callback= self.parse, headers={"User-Agent": random.choice(self.user_agent_list)})
-            yield response.follow(next_page_url, callback= self.parse)
+            # yield response.follow(next_page_url, callback= self.parse)
+            yield scrapy.Request(url=next_page_url, callback=self.parse)
 
     def parse_book_page(self, response) :
         # Got the html stored in the response once we do response.follow
