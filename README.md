@@ -1,5 +1,5 @@
 # Scrapy Spider bookstoscrape.com
-This repository contains codes which I wrote during learning Scrapy
+This repository contains codes which I wrote during learning Scrapy by building a spider to scrap data from Books To Scrap Website
 
 ## Scrapped Wesbite 
 Wesbite: [Books to Scrape](https://books.toscrape.com/)
