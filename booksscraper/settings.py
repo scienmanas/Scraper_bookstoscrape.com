@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = "booksscraper.spiders"
 #     'booksdata_cleaned.json' : {'format': 'json'}
 # }
 
-SCRAPEOPS_API_KEY = 'Your API KEY'
+# SCRAPEOPS_API_KEY = 'Your API KEY'
 SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
@@ -24,6 +24,16 @@ SCRAPEOPS_NUM_RESULTS = 50
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = 'https://headers.scrapeops.io/v1/browser-headers'
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
 SCRAPEOPS_NUM_RESULTS_HEADER = 5
+
+  
+# EXTENSIONS = {
+#         'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
+#         }
+  
+# DOWNLOADER_MIDDLEWARES = {
+#         'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+#         'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+#         }
 
 # ROTATED_PROXY_ENABLED = True
 
@@ -82,13 +92,13 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
    # 'booksscraper.middlewares.BooksscraperDownloaderMiddleware': 543,
    # 'booksscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware': 400,
    # 'booksscraper.middlewares.ScrapeOpsFakeBrowserHeaderMiddleware': 300 ,
    # 'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 300,
    
-}
+# }
 
 # DOWNLOADER_MIDDLEWARES.update({
 #     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
