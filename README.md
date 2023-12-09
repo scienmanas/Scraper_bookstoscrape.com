@@ -1,4 +1,4 @@
-# Scrapy-practice-codes
+# Scrapy Spider bookstoscrape.com
 This repository contains codes which I wrote during learning Scrapy
 
 ## Scrapped Wesbite 
