@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = "booksscraper.spiders"
 #     'booksdata_cleaned.json' : {'format': 'json'}
 # }
 
-SCRAPEOPS_API_KEY = '4d2a500f-c3ae-45ed-9dd8-44597ffff61a'
+SCRAPEOPS_API_KEY = 'Your API KEY'
 SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
